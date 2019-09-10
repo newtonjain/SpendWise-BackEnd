@@ -7,6 +7,8 @@ using System.Net;
 using System.Text;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json.Linq;
+using ResourceModel.Suggestions;
+using System.Linq;
 
 namespace InterfaceServices.RestService
 {
@@ -143,6 +145,65 @@ namespace InterfaceServices.RestService
             }
 
             return precdictiveForecastServiceResponse;
+
+        }
+
+        public List<Suggestions> GetSuggestions()
+        {
+            string apiUrl = "https://spendwise-prediction.herokuapp.com/localbusinesssearch?query=coffee%2008854";
+
+            //string inputJson = (new JavaScriptSerializer()).Serialize(predictiveServiceRequest);
+            WebClient client = new WebClient();
+            client.Headers["Content-type"] = "text/plain";
+            //client.Encoding = Encoding.UTF8;
+            string json = client.DownloadString(apiUrl);
+
+            var dict = new JavaScriptSerializer().Deserialize<Dictionary<string, object>>(json);
+
+            Console.WriteLine(dict["value"]);
+
+            var places = (Dictionary<string, object>)dict["places"];
+
+            var value = places["value"];
+
+            //(new System.Collections.Generic.Mscorlib_Dictionary<string, object>(new System.Collections.ArrayList.ArrayList(value).Items[0]).Items[2]).Key;
+
+            var objects = JArray.Parse(json); // parse as array 
+
+
+
+            List<Suggestions> listSuggestions = new List<Suggestions>();
+
+            foreach (var item in objects.Children())
+            {
+                var itemProperties = item.Children<JProperty>();
+                //you could do a foreach or a linq here depending on what you need to do exactly with the value
+                var myElement = itemProperties.FirstOrDefault(x => x.Name == "url");
+                var myElementValue = myElement.Value; ////This is a JValue type
+            }
+
+            foreach (JObject root in objects)
+            {
+                Suggestions forecast = new Suggestions();
+                foreach (KeyValuePair<String, JToken> app in root)
+                {
+                    //if (app.Key.Equals("spending"))
+                    //{
+                    //    forecast.Spending = Convert.ToInt32(Math.Round(Convert.ToDouble((String)app.Value)));
+                    //}
+
+                    //if (app.Key.Equals("time"))
+                    //{
+                    //    forecast.time = Convert.ToDateTime(app.Value.ToString()).ToShortDateString();
+                    //}
+
+
+                }
+
+                listSuggestions.Add(forecast);
+            }
+
+            return listSuggestions;
 
         }
 

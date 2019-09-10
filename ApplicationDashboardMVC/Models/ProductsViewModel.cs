@@ -34,4 +34,17 @@ namespace ApplicationDashboardMVC.Models
         public string ItemImage { get; internal set; }
         public string ItemCategory { get; internal set; }
     }
+
+    public class SuggestionsViewModel
+    {
+        public string Name { get; set; }
+        public string StreetAddress { get; set; }
+        public string URL { get; set; }
+    }
+
+    public class CategoryAnalysis
+    {
+        public string Category { get; set; }
+        public int Count { get; set; }
+    }
 }

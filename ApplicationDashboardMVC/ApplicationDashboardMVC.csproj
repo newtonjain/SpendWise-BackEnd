@@ -196,6 +196,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SuggestionController.cs" />
     <Compile Include="DataAccess\Configurations\CustomerConfiguration.cs" />
     <Compile Include="DataAccess\Configurations\EntityConfiguration.cs" />
     <Compile Include="DataAccess\Configurations\OrderConfiguration.cs" />
@@ -332,7 +333,8 @@
     <Content Include="Views\Products\DisplayShoppingCart.cshtml" />
     <Content Include="Views\Dashboard\Dashboard.cshtml" />
     <Content Include="Views\Dashboard\GetDetails.cshtml" />
-    <Content Include="Views\Dashboard\TopCustomers.cshtml" />
+    <Content Include="Views\Dashboard\PredictiveItems.cshtml" />
+    <Content Include="Views\Suggestion\Suggestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\App_Data\" />

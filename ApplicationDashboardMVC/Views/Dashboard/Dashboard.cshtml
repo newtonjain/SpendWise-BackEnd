@@ -171,6 +171,13 @@
                 <div class="panel-heading">
                     <i class="fa fa-bell fa-fw"></i> Predictive Spending - Today
                 </div>
+                 <a href="#" class="viewDetailsDailySpending" data-type="products">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
                 <!-- /.panel-heading -->
                 <div class="panel-body topCustomer">
                 </div>
@@ -236,6 +243,33 @@
 
                     type: 'GET',
                     url: '@Url.Action("GetDetails", "Dashboard")',
+                    data: { type: $(this).attr("data-type") },
+                    success: function (response) {
+                        $(".modal-body").html(response);
+                        $("#exampleModal").modal('show');
+                    },
+                    error: function () {
+                        alert("Something wrong");
+                    }
+
+                });
+
+            });
+
+
+            $("#ShowSuggestions").click(function () {
+                alert('hi');
+            })
+
+            //View Details Button
+            $(".viewDetailsDailySpending").click(function () {
+
+                $(".modal-body").html('');
+                
+
+                $.ajax({                    
+                    type: 'GET',
+                    url: '@Url.Action("GetDailySuggestions", "Dashboard")',
                     data: { type: $(this).attr("data-type") },
                     success: function (response) {
                         $(".modal-body").html(response);
@@ -341,18 +375,18 @@
 
                 $.ajax({
                     type: 'GET',
-                    url: '@Url.Action("CustomersByCountry", "Dashboard")',
+                    url: '@Url.Action("CategoryAnalysis", "Dashboard")',
                     success: function (response) {
 
                         console.log(response);
 
                         var data = new google.visualization.DataTable();
 
-                        data.addColumn('string', 'Product Type');
-                        data.addColumn('number', 'Quantity');
+                        data.addColumn('string', 'Category Type');
+                        data.addColumn('number', 'Count');
 
                         for (var i = 0; i < response.result.length; i++) {
-                            data.addRow([response.result[i].Country, response.result[i].CountCustomer]);
+                            data.addRow([response.result[i].Category, response.result[i].Count]);
                         }
 
 

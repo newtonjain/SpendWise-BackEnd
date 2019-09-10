@@ -1,6 +1,7 @@
 ﻿using InterfaceServices.RestService;
 using ResourceModel;
 using ResourceModel.PredictiveService;
+using ResourceModel.Suggestions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,6 +59,13 @@ namespace SpendWiseServices.Utils
             };
 
             return service.GetPredictiveSavings(request);
+        }
+
+        public static List<Suggestions> GetSuggestions()
+        {
+            PredictiveService service = new PredictiveService();
+
+            return service.GetSuggestions();
         }
     }
 }

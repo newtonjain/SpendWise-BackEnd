@@ -20,7 +20,7 @@ namespace ApplicationDashboardMVC.Controllers
         public ActionResult Dashboard()
         {
             var predictiveSavings = SpendWiseServiceUtil.GetPredictiveSavings();
-            ViewBag.SpendWiseExpense = "$" + predictiveSavings.Replace('"',' ');            
+            ViewBag.SpendWiseExpense = "$" + predictiveSavings.Replace('"', ' ');
             return View();
 
             // using (DashboardContext _context = new DashboardContext())
@@ -42,6 +42,14 @@ namespace ApplicationDashboardMVC.Controllers
             return PartialView("~/Views/Dashboard/GetDetails.cshtml", result);
 
         }
+
+        public ActionResult GetDailySuggestions(string type)
+        {
+            List<SuggestionsViewModel> result = SpendWiseServiceUtil.GetSuggestions();
+
+            return PartialView("~/Views/Dashboard/GetDetails.cshtml", result);
+        }
+
 
 
         public ActionResult DailyPredictiveExpense()
@@ -74,7 +82,7 @@ namespace ApplicationDashboardMVC.Controllers
             //                         }).ToList();
             //}
 
-            return PartialView("~/Views/Dashboard/TopCustomers.cshtml", SpendWiseServiceUtil.GetDailyPredictiveItems());
+            return PartialView("~/Views/Dashboard/PredictiveItems.cshtml", SpendWiseServiceUtil.GetDailyPredictiveItems());
         }
 
         public ActionResult GetPredictiveForecast()
@@ -92,30 +100,57 @@ namespace ApplicationDashboardMVC.Controllers
 
             //return Json(new { result = ordersByCountry }, JsonRequestBehavior.AllowGet);
 
-            var forecast = SpendWiseServiceUtil.GetPredictiveForecast();            
+            var forecast = SpendWiseServiceUtil.GetPredictiveForecast();
             var monthlyExpense = forecast.Sum(x => Convert.ToInt32(x.Spending)).ToString();
             Session.Add("MonthlyExpense", monthlyExpense);
 
             return Json(new { result = forecast }, JsonRequestBehavior.AllowGet);
             //return View();
 
-            
+
         }
 
-        public ActionResult CustomersByCountry()
+        public ActionResult CategoryAnalysis()
         {
             DashboardContext _context = new DashboardContext();
 
-            var customerByCountry = (from c in _context.ProductSet
-                                   group c by c.ProductType into g
-                                   orderby g.Count() descending
-                                   select new
-                                   {
-                                       Country = g.Key,
-                                       CountCustomer = g.Count()
-                                   }).ToList();
+            List<CategoryAnalysis> analysis = new List<CategoryAnalysis>();
 
-            return Json(new { result = customerByCountry }, JsonRequestBehavior.AllowGet);
+            analysis.Add(
+                new CategoryAnalysis()
+                {
+                    Category = "Junk",
+                    Count = 2
+                }
+                );
+
+
+
+            analysis.Add(
+            new CategoryAnalysis()
+            {
+                Category = "Coffee",
+                Count = 1
+            }
+                );
+
+
+            analysis.Add(
+new CategoryAnalysis()
+{
+    Category = "Entertainment",
+    Count = 1
+}
+    );
+
+
+
+
+
+            return Json(new
+            {
+                result = analysis
+            }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult OrdersByCustomer()

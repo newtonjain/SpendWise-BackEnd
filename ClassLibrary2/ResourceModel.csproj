@@ -74,6 +74,7 @@
     <Compile Include="PredictiveService\PredictiveServiceRequest.cs" />
     <Compile Include="PredictiveService\PredictiveServiceResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Suggestions\Suggestions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

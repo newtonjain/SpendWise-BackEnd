@@ -1,5 +1,6 @@
 ﻿using ApplicationDashboardMVC.Models;
 using ResourceModel;
+using ResourceModel.Suggestions;
 using System;
 using System.Collections.Generic;
 
@@ -39,6 +40,25 @@ namespace SpendWise.Domain
                     ItemName = item.ItemName,
                     ItemImage = GetItemImage(item)
                     
+                });
+            }
+            return model;
+        }
+
+        public static List<SuggestionsViewModel> GetSuggestions()
+        {
+            var model = new List<SuggestionsViewModel>();
+
+            var responseDailyPredictiveItem = SpendWiseServices.Utils.ServiceUtils.GetSuggestions();
+
+
+            foreach (Suggestions item in responseDailyPredictiveItem)
+            {
+                model.Add(new SuggestionsViewModel
+                {
+                    Name = item.Name,
+                    StreetAddress = item.StreetAddress,
+                    URL = item.URL
                 });
             }
             return model;
