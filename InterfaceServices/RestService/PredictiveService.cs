@@ -3,18 +3,9 @@ using ResourceModel;
 using ResourceModel.PredictiveService;
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Runtime.Serialization.Json;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web.Script.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
 namespace InterfaceServices.RestService

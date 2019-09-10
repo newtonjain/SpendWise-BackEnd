@@ -248,9 +248,17 @@
     <Content Include="Images\Clothing\Suit.png" />
     <Content Include="Images\Clothing\tshirt.png" />
     <Content Include="Images\Customers\alexia.png" />
+    <Content Include="Images\Customers\burger.png" />
+    <Content Include="Images\Customers\cart.png" />
+    <Content Include="Images\Customers\coffee.png" />
+    <Content Include="Images\Customers\Coffee1.jpg" />
     <Content Include="Images\Customers\mahdi.png" />
+    <Content Include="Images\Customers\movie.png" />
+    <Content Include="Images\Customers\pizza.png" />
+    <Content Include="Images\Customers\popcorn.png" />
     <Content Include="Images\Customers\sara.png" />
     <Content Include="Images\Customers\tarik.png" />
+    <Content Include="Images\Customers\transport.png" />
     <Content Include="Images\Electronics\Camera.png" />
     <Content Include="Images\Electronics\Keyboard.png" />
     <Content Include="Images\Electronics\Laptop.png" />
@@ -267,6 +275,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\SpendWiseAI - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

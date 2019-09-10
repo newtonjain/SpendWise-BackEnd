@@ -50,16 +50,16 @@ namespace SpendWise.Domain
             switch (item.ItemCategory)
             { 
                 case "Meals":
-                    imageNumber = "1";
+                    imageNumber = "coffee.png";
                     break;
                 case "Transportation":
-                    imageNumber = "2";
+                    imageNumber = "transport.png";
                     break;
                 case "Shopping":
-                    imageNumber ="3";
+                    imageNumber ="cart.png";
                     break;
                 case "Entertainment":
-                    imageNumber = "4";
+                    imageNumber = "popcorn.png";
                     break;
                 default:
                     imageNumber = "5";
