@@ -95,7 +95,7 @@ namespace InterfaceServices.RestService
 
                     if(app.Key.Equals("time"))
                     {
-                        forecast.time = Convert.ToDateTime(app.Value.ToString()).ToShortDateString();
+                        forecast.time = Convert.ToDateTime(app.Value.ToString()).ToString("MM/dd");
                     }
 
                     //listforecast.Add(

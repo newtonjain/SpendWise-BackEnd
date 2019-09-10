@@ -21,6 +21,7 @@ namespace ApplicationDashboardMVC.Controllers
         {
             var predictiveSavings = SpendWiseServiceUtil.GetPredictiveSavings();
             ViewBag.SpendWiseExpense = "$" + predictiveSavings.Replace('"', ' ');
+            ViewBag.CountCustomers = "5";
             return View();
 
             // using (DashboardContext _context = new DashboardContext())
